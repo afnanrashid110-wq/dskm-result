@@ -1,0 +1,15 @@
+{
+  "background_color": "#b80f0f",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "DSKM Result Wala",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Result Wala",
+  "start_url": "/[https://afnanrashid10-wq.github.io/dskm-result/](https://afnanrashid10-wq.github.io/dskm-result/)",
+  "theme_color": "#0f7a6d",
+  "categories": [
+    "photo"
+  ],
+  "description": "Result Management System of DSKM"
+}
