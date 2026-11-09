@@ -1,0 +1,8 @@
+{
+  "appId": "com.resultwala.app",
+  "appName": "Result Wala",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
