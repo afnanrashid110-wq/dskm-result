@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f7a6d">
+<title>Result Wala</title>
+<style>
+:root{--bg:#eef4f2;--cd:#fff;--tx:#10201d;--mu:#5d706c;--pr:#0f7a6d;--bd:#d6e2de}
+@media(prefers-color-scheme:dark){:root{--bg:#0c1514;--cd:#15231f;--tx:#e8f3f0;--mu:#93a9a4;--pr:#2bb5a2;--bd:#27403a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,"Noto Sans Bengali",sans-serif;padding-top:env(safe-area-inset-top)}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--pr);color:#fff}
+header svg{width:36px;height:36px;border-radius:9px}header b{font-size:18px}header small{display:block;opacity:.8;font-size:11px}
+main{max-width:760px;margin:auto;padding:12px 12px 100px}.tab{display:none}.tab.on{display:block}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:12px;margin:10px 0}
+h3{margin:2px 0 8px;font-size:16px}
+label{display:block;font-size:12px;color:var(--mu);margin:8px 0}
+input,select,textarea{width:100%;padding:9px;border:1px solid var(--bd);border-radius:9px;background:var(--bg);color:var(--tx);font:inherit;margin-top:3px}
+input[type=range]{padding:0}input[type=checkbox]{width:auto}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.cm{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+button{border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:600;background:var(--pr);color:#fff}
+button.s{background:var(--bd);color:var(--tx)}button.d{background:#b3261e}
+.bar{display:flex;gap:8px;margin:10px 0}.bar>*{flex:1}
+.st{display:flex;justify-content:space-between;align-items:center;cursor:pointer}.st small{color:var(--mu)}
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;background:var(--cd);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom)}
+#nav button{flex:1;background:none;color:var(--mu);border-radius:0;padding:9px 2px;font-size:11px}#nav button.on{color:var(--pr)}#nav i{display:block;font-style:normal;font-size:20px}
+#lo{position:fixed;inset:0;z-index:99;background:linear-gradient(#0f7a6d,#235a55);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:24px}
+#lo svg{width:120px;height:120px}#lo b{font-size:28px;margin:8px 0 18px}#lo input{max-width:320px;text-align:center}#lo button{width:100%;max-width:320px;margin-top:10px;background:#fff;color:#0f5f55}
+#lf{width:180px;height:180px;overflow:hidden;position:relative;touch-action:none;background:#ddd;margin:8px auto}
+.lgf{overflow:hidden;position:relative;background:#fff}.lgf img,.lgf svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#wrap{overflow:hidden;background:#fff}
+#paper{width:1400px;min-height:1980px;background:#fff;color:#333;font-family:Roboto,Arial,sans-serif;display:flex;flex-direction:column;transform-origin:0 0;position:relative}
+.ph{display:flex;align-items:flex-start;padding:36px 12px 0 30px}.ph .lgf{width:160px;height:160px;margin-top:8px;flex:none}
+.ph .t{flex:1;margin-left:70px;min-width:0;padding-top:42px}
+#nm{display:block;white-space:nowrap;overflow:hidden;color:#0e6a3a;font:900 58px/1.1 Impact,"Arial Narrow",sans-serif;letter-spacing:-1px}
+.ad{font-size:23px;font-weight:600;color:#222;margin-top:20px;white-space:nowrap}.ad i{font-style:normal;font-size:15px;margin:0 6px 0 22px}.ad i:first-child{margin-left:0}
+.gs{border-collapse:collapse;width:195px;font-size:17px;flex:none;background:#e1ecd3}.gs th{background:#8e3a32;color:#f5e8c9;padding:4px;font-size:18px}.gs td{border:1px solid #fff;padding:3px 6px;text-align:center}
+.ban{margin:26px auto 0;width:520px;height:76px;line-height:68px;text-align:center;background:linear-gradient(#7b4b3a,#4b281e);color:#f4e4c1;font:800 44px/68px Impact,Arial,sans-serif;border:4px double #d3b987;border-radius:6px;text-shadow:0 2px 2px #000}
+.in{display:grid;grid-template-columns:653px 1fr;padding:46px 0 0 55px;font-size:27px;color:#333}.in div{display:flex;height:45px}.in span{width:218px;flex:none;color:#444}.in b{width:20px;font-weight:400}
+.mtw{position:relative;margin:16px 0 0 58px;width:1309px}.wm{position:absolute;width:420px;height:420px;left:445px;top:300px;opacity:.1;border-radius:50%;pointer-events:none}
+.mt{width:1309px;table-layout:fixed;border-collapse:collapse;text-align:center;font-size:24px;position:relative}
+.mt th,.mt td{border:2px solid #222;padding:4px 2px;height:42px;line-height:1.15}.mt th{font-weight:500;font-size:23px}.mt td.l{text-align:left;padding-left:12px;font-size:23px}
+.mt tr.tt td{font-weight:700;font-size:24px}
+.bt{display:flex;gap:18px;margin:23px 0 0 60px;width:1312px}.bt table{border-collapse:collapse;width:442px;font-size:23px}.bt td{border:2px solid #222;padding:4px 12px;height:42px}.bt td+td{text-align:center;color:#555}
+.cmt{width:854px;height:218px;border:2px solid #222;padding:8px 12px;font-size:23px;color:#444}.cmt b{text-decoration:underline;color:#222}
+.dp{font-size:26px;color:#444;margin:12px 0 0 2px}
+.ft{margin-top:auto}.sgs{display:flex;justify-content:space-between;padding:0 50px}.sc{width:300px;text-align:center}.sb{height:90px;display:flex;align-items:flex-end;justify-content:center}.sb img{max-height:86px;max-width:100%}
+.sc div.ln{border-top:2px solid #999}.bar2{background:#d4d4cc;height:62px;display:flex;justify-content:space-between;padding:12px 50px 0;font-weight:700;font-size:24px;color:#555}.bar2 span{width:300px;text-align:center}
+@media print{header,#nav,.np,.tab:not(#t2){display:none!important}body{background:#fff;padding:0}main{padding:0;max-width:none}#wrap{width:794px!important;height:1123px!important}#paper{transform:scale(.5671)!important}@page{size:A4;margin:0}}
+</style></head><body>
+<div id="lo"></div>
+<header><span id="hl"></span><div><b>Result Wala</b><small>Madrasa &amp; School</small></div></header>
+<main><div class="tab" id="t0"></div><div class="tab" id="t1"></div>
+<div class="tab" id="t2"><div class="bar np"><button onclick="print()">🖨 Print / PDF</button></div><div id="wrap"><div id="paper"></div></div></div>
+<div class="tab" id="t3"></div><div class="tab" id="t4"></div></main>
+<nav id="nav"></nav>
+<script>
+const LOGO='<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f7a6d"/><stop offset="1" stop-color="#235a55"/></linearGradient></defs><rect width="512" height="512" rx="96" fill="url(#gg)"/><rect x="110" y="70" width="292" height="330" rx="32" fill="#fff"/><path d="M110 134v-32a32 32 0 0 1 32-32h228a32 32 0 0 1 32 32v32z" fill="#8b1a1a"/><text x="256" y="120" font-family="Arial" font-weight="800" font-size="46" fill="#fff" text-anchor="middle">RESULT</text><rect x="145" y="165" width="155" height="16" rx="8" fill="#cfd8dc"/><rect x="145" y="205" width="155" height="16" rx="8" fill="#cfd8dc"/><rect x="145" y="245" width="155" height="16" rx="8" fill="#cfd8dc"/><rect x="320" y="165" width="48" height="16" rx="8" fill="#0f7a6d"/><rect x="320" y="205" width="48" height="16" rx="8" fill="#0f7a6d"/><rect x="320" y="245" width="48" height="16" rx="8" fill="#0f7a6d"/><path d="M150 330l30 30 60-72" fill="none" stroke="#1ea853" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><circle cx="332" cy="330" r="52" fill="#ffd54f" stroke="#d35400" stroke-width="8"/><text x="332" y="352" font-family="Arial" font-weight="800" font-size="58" fill="#8b1a1a" text-anchor="middle">A+</text></svg>';
+const EMB='<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#d9e8b5" stroke="#0f6b3a" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="#f4f1a0" stroke="#0f6b3a" stroke-width="2"/><path d="M50 22v40M42 40h16" stroke="#0f6b3a" stroke-width="4"/></svg>';
+const GCID=''; /* Google লগইনের জন্য এখানে আপনার Google OAuth Client ID বসান */
+const PASS='samin';
+const $=id=>document.getElementById(id);
+$('hl').innerHTML=LOGO;
+const COMP={wr:'WR',mcq:'MCQ',cq:'CQ',prac:'Prac.',taj:'Tajvid',qur:'Quran',know:'Know.',dia:'Diary'},KEYS=Object.keys(COMP);
+const DS=[['Quran Majid and Tajweed',100,1,'wr'],['Hadith Sharif',100,1,'wr'],['Akaid and Fiqh',100,3,'wr'],['Arabic 1st',100,4,'wr'],['Arabic 2nd',100,4,'wr'],['Bengali 1st',100,6,'mcq cq'],['Bengali 2nd',100,6,'mcq cq'],['English 1st',100,8,'wr'],['English 2nd',100,8,'wr'],['Mathematics',100,10,'mcq cq'],['Islamic History',100,11,'mcq cq'],['ICT',50,12,'mcq prac'],['Talimul Quran',100,13,'taj qur'],['Agriculture Studies (4th)',100,14,'mcq cq prac'],['General Knowledge',100,15,'know dia']];
+const mkSubs=()=>DS.map(([n,f,g,c])=>({n,f,g,c:c.split(' ')}));
+const CN={8:'Thaman (Eight)',9:'Tase (Nine)',10:'Ashir (Ten)'};
+let S;try{S=JSON.parse(localStorage.getItem('rw2'))}catch(e){}
+S=S||{school:{name:'Darunnazat Siddikia Kamil Madrasah',addr:'Sarulia, Demra, Dhaka-1361',mail:'darunnazat90@gmail.com',web:'www.dskm.ac.bd'},logo:{src:'',z:1,x:0,y:0,r:1},sig:{},subs:{8:mkSubs(),9:mkSubs(),10:mkSubs()},st:[],cur:-1};
+const save=()=>{try{localStorage.setItem('rw2',JSON.stringify(S))}catch(e){alert('মেমোরি ভরে গেছে')}};
+let T=0,SC=9,Q='';const cur=()=>S.st[S.cur];
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mk=(st,i)=>st.marks[i]=st.marks[i]||{h:'',v:{}};
+const dt=v=>(v||'').split('-').reverse().join('-');
+/* ---------- login ---------- */
+let U;try{U=JSON.parse(localStorage.getItem('rwU'))}catch(e){}
+function lo(){const o=$('lo');if(U){o.style.display='none';return}o.style.display='flex';
+ o.innerHTML=LOGO+'<b>Result Wala</b><input id="pw" type="password" placeholder="Password" onkeydown="if(event.key==\'Enter\')pl()"><button onclick="pl()">Login</button><button onclick="gl()" style="background:#fff3">Sign in with Google</button>'}
+function setU(u){U=u;try{localStorage.setItem('rwU',JSON.stringify(u))}catch(e){}lo();tab(T)}
+function pl(){if($('pw').value.trim().toLowerCase()===PASS)setU({n:'Samin',e:'Admin',g:0});else{$('pw').value='';$('pw').placeholder='ভুল পাসওয়ার্ড'}}
+function gl(){if(!GCID){alert('Google লগইনের জন্য ফাইলের GCID ভ্যারিয়েবলে আপনার Google Client ID বসাতে হবে।');return}
+ const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';
+ s.onload=()=>{google.accounts.id.initialize({client_id:GCID,callback:r=>{const p=JSON.parse(decodeURIComponent(escape(atob(r.credential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))));setU({n:p.name,e:p.email,p:p.picture,g:1})}});google.accounts.id.prompt()};
+ s.onerror=()=>alert('ইন্টারনেট সংযোগ লাগবে');document.head.appendChild(s)}
+/* ---------- calc ---------- */
+function gr(p){p=Math.round(p);return p>=80?['A+',5]:p>=70?['A',4]:p>=60?['A-',3.5]:p>=50?['B',3]:p>=40?['C',2]:p>=33?['D',1]:['F',0]}
+function calc(st){const subs=S.subs[st.cls];const rows=subs.map((s,i)=>{const m=mk(st,i);return{s,i,m,tot:s.c.reduce((a,k)=>a+(+m.v[k]||0),0)}});
+ const groups=[];rows.forEach(r=>{let g=groups[groups.length-1];if(!g||g.g!=r.s.g){g={g:r.s.g,rows:[],full:0,tot:0};groups.push(g)}g.rows.push(r);g.full+=+r.s.f;g.tot+=r.tot});
+ let fail=0,gp=0;groups.forEach(g=>{[g.gr,g.gp]=gr(g.tot/g.full*100);gp+=g.gp;if(!g.gp)fail+=g.rows.length});
+ const gpa=groups.length&&!fail?gp/groups.length:0;
+ return{rows,groups,fail,gpa,full:rows.reduce((a,r)=>a+ +r.s.f,0),tot:rows.reduce((a,r)=>a+r.tot,0),lg:fail?'F':gpa>=5?'A+':gpa>=4?'A':gpa>=3.5?'A-':gpa>=3?'B':gpa>=2?'C':'D'}}
+function autoCm(c){return c.fail?'You have failed in one or more subjects. Please meet and consult with your teachers and work harder.':c.gpa>=5?'Excellent result. Congratulations! Keep up the good work and maintain this standard.':c.gpa>=4?'Very good result. Keep trying to reach the highest level.':c.gpa>=3?'Good result, but there is still room to improve. Work harder.':c.gpa>=2?'This result shows your shortcomings and really it is far below the standard level. It is said that life is what you do. Meet and consult with your teachers when you need.':'This result is very poor. Meet and consult with your teachers immediately.'}
+/* ---------- tabs ---------- */
+const TB=[['👥','ছাত্র'],['✎','এন্ট্রি'],['📄','প্রিভিউ'],['⚙','সেটআপ'],['👤','প্রোফাইল']];
+function tab(n){T=n;for(let i=0;i<5;i++)$('t'+i).classList.toggle('on',i==n);
+ $('nav').innerHTML=TB.map((b,i)=>`<button class="${i==n?'on':''}" onclick="tab(${i})"><i>${b[0]}</i>${b[1]}</button>`).join('');
+ [r0,r1,paper,r3,r4][n]();scrollTo(0,0)}
+function r0(){const l=S.st.map((s,i)=>({s,i})).filter(o=>(o.s.name+o.s.roll).toLowerCase().includes(Q.toLowerCase()));
+ $('t0').innerHTML=`<div class="bar"><input placeholder="🔍 নাম বা রোল" value="${esc(Q)}" oninput="Q=this.value;r0l()"><button style="flex:none" onclick="newSt()">+ নতুন</button></div><div id="sl"></div>`;r0l()}
+function r0l(){const l=S.st.map((s,i)=>({s,i})).filter(o=>(o.s.name+o.s.roll).toLowerCase().includes(Q.toLowerCase()));
+ $('sl').innerHTML=l.map(({s,i})=>{const c=calc(s);return`<div class="card st" onclick="S.cur=${i};save();tab(1)"><div><b>${esc(s.name||'নামহীন')}</b><br><small>Class ${s.cls} · Roll ${esc(s.roll||'-')}</small></div><div style="text-align:right"><b>GPA ${c.gpa.toFixed(2)}</b><br><small>${c.fail?'Failed':'Passed'}</small></div></div>`}).join('')||'<p style="color:var(--mu)">কোনো ছাত্র নেই। “+ নতুন” চাপুন।</p>'}
+function newSt(){S.st.push({cls:9,name:'',father:'',mother:'',sid:'',roll:'',exam:'Model Examination',group:'General',section:'',year:'2026',pos:'',present:'',absent:'',date:new Date().toISOString().slice(0,10),comment:'',marks:[]});S.cur=S.st.length-1;save();tab(1)}
+function r1(){const st=cur();if(!st){$('t1').innerHTML='<p>আগে “ছাত্র” ট্যাব থেকে ছাত্র বেছে নিন।</p>';return}
+ const f=(l,k,t='text')=>`<label>${l}<input data-f="${k}" type="${t}" value="${esc(st[k])}"></label>`;
+ $('t1').innerHTML=`<div class="card"><h3>ছাত্রের তথ্য</h3><label>Class<select onchange="cur().cls=+this.value;save();r1()">${[8,9,10].map(c=>`<option value="${c}" ${c==st.cls?'selected':''}>Class ${c} - ${CN[c]}</option>`).join('')}</select></label>${f('Name of Student','name')}${f("Father's Name",'father')}${f("Mother's Name",'mother')}<div class="g2">${f('Student ID','sid')}${f('Roll No.','roll')}${f('Exam','exam')}${f('Group','group')}${f('Year/Session','year')}${f('Section','section')}</div></div>`+
+ `<div class="card"><h3>নম্বর</h3>`+S.subs[st.cls].map((s,i)=>{const m=mk(st,i);return`<div style="border-top:1px solid var(--bd);padding-top:6px;margin-top:6px"><b>${i+1}. ${esc(s.n)}</b> <small>(${s.f})</small><div class="cm"><label>Highest<input data-m="${i}" data-c="h" inputmode="decimal" value="${esc(m.h)}"></label>${s.c.map(k=>`<label>${COMP[k]}<input data-m="${i}" data-c="${k}" inputmode="decimal" value="${esc(m.v[k])}"></label>`).join('')}</div></div>`}).join('')+`</div>`+
+ `<div class="card"><h3>ফলাফল তথ্য</h3><div class="g2">${f('Section Position','pos')}${f('Date of Publication','date','date')}${f('Total Present','present')}${f('Total Absent','absent')}</div><label>Comments (ফাঁকা রাখলে অটো)<textarea rows="3" data-f="comment">${esc(st.comment)}</textarea></label><div class="bar"><button onclick="tab(2)">প্রিভিউ দেখুন</button><button class="d" onclick="if(confirm('ছাত্রটি মুছবেন?')){S.st.splice(S.cur,1);S.cur=S.st.length-1;save();tab(0)}">মুছুন</button></div></div>`}
+function lgP(){const L=S.logo;$('lf').style.borderRadius=L.r?'50%':'6px';$('lf').innerHTML=lgH(L)}
+const lgH=L=>L.src?`<img src="${L.src}" style="transform:translate(${L.x*100}%,${L.y*100}%) scale(${L.z})">`:EMB;
+function r3(){const sc=S.school,L=S.logo;const sf=(l,k)=>`<label>${l}<input data-s="${k}" value="${esc(sc[k])}"></label>`;
+ const rg=(l,k,a,b,s)=>`<label>${l}<input type="range" data-l="${k}" min="${a}" max="${b}" step="${s}" value="${L[k]}"></label>`;
+ $('t3').innerHTML=`<div class="card"><h3>প্রতিষ্ঠানের তথ্য</h3>${sf('নাম','name')}${sf('ঠিকানা','addr')}<div class="g2">${sf('ইমেইল','mail')}${sf('ওয়েবসাইট','web')}</div></div>
+ <div class="card"><h3>লোগো</h3><input type="file" accept="image/*" onchange="imgRead(this.files[0],600,d=>{S.logo.src=d;S.logo.z=1;S.logo.x=0;S.logo.y=0;save();r3()})"><div id="lf"></div><small style="color:var(--mu)">ছবি আঙুল দিয়ে টেনে সরান, নিচের স্লাইডারে জুম/পজিশন ঠিক করুন</small>${rg('জুম','z',.5,4,.05)}${rg('ডান-বাম','x',-1,1,.01)}${rg('উপর-নিচ','y',-1,1,.01)}<label><input type="checkbox" data-l="r" ${L.r?'checked':''}> গোল ফ্রেম</label><button class="s" onclick="S.logo.src='';save();r3()">লোগো মুছুন</button></div>
+ <div class="card"><h3>স্বাক্ষর (ঐচ্ছিক)</h3>${[['t','Class Teacher'],['c','Controller'],['p','Principal']].map(([k,n])=>`<label>${n}<input type="file" accept="image/*" onchange="imgRead(this.files[0],500,d=>{S.sig['${k}']=d;save();alert('যোগ হয়েছে')})"></label>`).join('')}<button class="s" onclick="S.sig={};save()">সব স্বাক্ষর মুছুন</button></div>
+ <div class="card"><h3>বিষয় সেটিং</h3><label>Class<select onchange="SC=+this.value;r3()">${[8,9,10].map(c=>`<option value="${c}" ${c==SC?'selected':''}>Class ${c}</option>`).join('')}</select></label><small style="color:var(--mu)">Group নম্বর একই হলে বিষয়গুলোর গ্রেড একসাথে (পেয়ার) হয়। Comps: wr mcq cq prac taj qur know dia</small>`+
+ S.subs[SC].map((s,i)=>`<div style="border-top:1px solid var(--bd);margin-top:8px"><label>নাম<input data-si="${i}" data-sk="n" value="${esc(s.n)}"></label><div class="cm" style="grid-template-columns:1fr 1fr 2fr"><label>Full<input data-si="${i}" data-sk="f" inputmode="numeric" value="${s.f}"></label><label>Group<input data-si="${i}" data-sk="g" inputmode="numeric" value="${s.g}"></label><label>Comps<input data-si="${i}" data-sk="c" value="${s.c.join(' ')}"></label></div><button class="d" onclick="S.subs[SC].splice(${i},1);save();r3()">মুছুন</button></div>`).join('')+`<div class="bar"><button onclick="S.subs[SC].push({n:'New Subject',f:100,g:99+S.subs[SC].length,c:['wr']});save();r3()">+ বিষয় যোগ</button></div></div>`;
+ lgP();const f=$('lf');let d=null;
+ f.onpointerdown=e=>{d=[e.clientX,e.clientY];f.setPointerCapture(e.pointerId)};f.onpointerup=()=>d=null;
+ f.onpointermove=e=>{if(!d)return;S.logo.x+=(e.clientX-d[0])/180;S.logo.y+=(e.clientY-d[1])/180;d=[e.clientX,e.clientY];lgP();document.querySelectorAll('[data-l=x]')[0].value=S.logo.x;document.querySelectorAll('[data-l=y]')[0].value=S.logo.y;save()}}
+function r4(){$('t4').innerHTML=`<div class="card" style="text-align:center">${U&&U.p?`<img src="${esc(U.p)}" style="width:80px;border-radius:50%">`:'<div style="width:80px;height:80px">'+LOGO+'</div>'}<h3>${esc(U?U.n:'')}</h3><small>${esc(U?U.e:'')}</small></div>
+ <div class="card"><h3>ডেটা ব্যাকআপ</h3><div class="bar"><button class="s" onclick="const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)]));a.download='result-wala-backup.json';a.click()">⬇ এক্সপোর্ট</button><label class="s" style="margin:0;padding:10px;text-align:center;border-radius:10px;background:var(--bd);color:var(--tx)">⬆ ইমপোর্ট<input type="file" accept=".json" hidden onchange="this.files[0].text().then(t=>{S=JSON.parse(t);save();tab(0)})"></label></div><small style="color:var(--mu)">মোট ছাত্র: ${S.st.length}</small></div>
+ <button class="d" style="width:100%" onclick="U=null;localStorage.removeItem('rwU');lo()">লগআউট</button>`}
+/* ---------- events ---------- */
+addEventListener('input',e=>{const t=e.target,d=t.dataset;if(!d)return;
+ if(d.s!==undefined)S.school[d.s]=t.value;else if(d.f)cur()[d.f]=t.value;
+ else if(d.m!==undefined){const m=mk(cur(),+d.m);d.c=='h'?m.h=t.value:m.v[d.c]=t.value}
+ else if(d.l){S.logo[d.l]=d.l=='r'?t.checked?1:0:+t.value;lgP()}
+ else if(d.si!==undefined){const s=S.subs[SC][+d.si];if(d.sk=='c')s.c=t.value.toLowerCase().split(/[\s,]+/).filter(k=>COMP[k]);else if(d.sk=='n')s.n=t.value;else s[d.sk]=+t.value||0}
+ else return;save()});
+function imgRead(f,mx,cb){if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,mx/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);cb(c.toDataURL('image/png'))};i.src=r.result};r.readAsDataURL(f)}
+/* ---------- transcript ---------- */
+function paper(){const st=cur(),P=$('paper'),sc=S.school,L=S.logo;if(!st){P.innerHTML='<p style="padding:80px;font-size:40px;text-align:center">ছাত্র নির্বাচন করুন</p>';fit();return}
+ const c=calc(st);let rows='';
+ c.groups.forEach(g=>g.rows.forEach((r,j)=>{const{s,i,m}=r;rows+=`<tr><td>${i+1}</td><td class="l">${esc(s.n)}</td><td>${s.f}</td><td>${esc(m.h)}</td>${KEYS.map(k=>`<td>${s.c.includes(k)&&m.v[k]!==undefined&&m.v[k]!==''?esc(m.v[k]):'-'}</td>`).join('')}<td>${r.tot}</td>${j==0?`<td rowspan="${g.rows.length}">${g.gr}</td><td rowspan="${g.rows.length}">${g.gp}</td>`:''}</tr>`}));
+ const GS=[['A+','80-100',5],['A','70-79',4],['A-','60-69',3.5],['B','50-59',3],['C','40-49',2],['D','33-39',1],['F','00-32',0]];
+ const cw=[48,183,95,105,58,72,54,74,84,84,86,78,86,106,96];
+ const lr=(a,b)=>`<div><span>${a}</span><b>:</b>${b}</div>`;
+ P.innerHTML=`<div class="ph"><div class="lgf" style="border-radius:${L.r?'50%':'6px'}">${lgH(L)}</div><div class="t"><span id="nm">${esc(sc.name)}</span><div class="ad"><i>◉</i>${esc(sc.addr)}<i>✉</i>${esc(sc.mail)}<i>●</i>${esc(sc.web)}</div></div><table class="gs"><tr><th colspan="3">Grading System</th></tr><tr><td><b>LG</b></td><td><b>Range</b></td><td><b>GP</b></td></tr>${GS.map(g=>`<tr><td>${g[0]}</td><td>${g[1]}</td><td>${g[2]}</td></tr>`).join('')}</table></div>
+<div class="ban">Academic Transcript</div>
+<div class="in">${lr('Name of Student',esc(st.name))}<div></div>${lr("Father's Name",esc(st.father))}<div></div>${lr("Mother's Name",esc(st.mother))}${lr('Class',CN[st.cls])}${lr('Student ID',esc(st.sid))}${lr('Roll No.',esc(st.roll))}${lr('Exam',esc(st.exam))}${lr('Group',esc(st.group))}${lr('Year/Session',esc(st.year))}${lr('Section',esc(st.section))}</div>
+<div class="mtw"><div class="wm lgf" style="border-radius:50%">${lgH(L)}</div><table class="mt"><colgroup>${cw.map(w=>`<col style="width:${w}px">`).join('')}</colgroup><tr><th rowspan="2">SL</th><th rowspan="2">Name Of<br>Subjects</th><th rowspan="2">Full<br>Marks</th><th rowspan="2">Highest<br>Marks</th><th colspan="8">Obtained Marks</th><th rowspan="2">Total<br>Marks</th><th rowspan="2">Letter<br>Grade</th><th rowspan="2">Grade<br>Point</th></tr><tr>${KEYS.map(k=>`<th>${COMP[k]}</th>`).join('')}</tr>${rows}<tr class="tt"><td colspan="2">Total Exam Marks</td><td>${c.full}</td><td colspan="9">Obtained Marks &amp; GPA</td><td>${c.tot}</td><td>${c.lg}</td><td>${c.gpa.toFixed(2)}</td></tr></table></div>
+<div class="bt"><table><tr><td>Result Status</td><td>${c.fail?'Failed':'Passed'}</td></tr><tr><td>Section Position</td><td>${esc(st.pos)}</td></tr><tr><td>GPA</td><td>${c.gpa.toFixed(2)}</td></tr><tr><td>Failed Subject (s)</td><td>${c.fail}</td></tr><tr><td>Total Present</td><td>${esc(st.present)}</td></tr><tr><td>Total Absent</td><td>${esc(st.absent)}</td></tr></table><div><div class="cmt"><b>Comments:</b><br>${esc(st.comment||autoCm(c))}</div><div class="dp">Date of Publication: &nbsp;${dt(st.date)}</div></div></div>
+<div class="ft"><div class="sgs">${[['t','Class Teacher'],['c','Controller'],['p','Principal']].map(([k])=>`<div class="sc"><div class="sb">${S.sig[k]?`<img src="${S.sig[k]}">`:''}</div><div class="ln"></div></div>`).join('')}</div><div class="bar2"><span>Class Teacher</span><span>Controller</span><span>Principal</span></div></div>`;fit()}
+function fit(){const w=$('wrap').clientWidth,k=Math.min(1,w/1400),p=$('paper');p.style.transform=`scale(${k})`;$('wrap').style.height=p.offsetHeight*k+'px';
+ const n=$('nm');if(n){let f=58;n.style.fontSize=f+'px';while(n.scrollWidth>n.clientWidth&&f>18){f-=2;n.style.fontSize=f+'px'}}}
+addEventListener('resize',()=>T==2&&fit());
+if(S.cur<0&&S.st.length)S.cur=0;lo();tab(0);
+</script></body></html>
+EOF
+wc -c /mnt/user-data/outputs/index.html
